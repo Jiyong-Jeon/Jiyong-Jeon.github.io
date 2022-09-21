@@ -89,7 +89,7 @@ img_cdn: ''
 
 # the avatar on sidebar, support local or CORS resources
 # 대표 이미지
-avatar: '/commons/avatar.jpg'
+avatar: ''
 
 # boolean type, the global switch for ToC in posts.
 # TOC = table of contents , 옆에 따라다니는거
