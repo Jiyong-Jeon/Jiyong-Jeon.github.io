@@ -1,6 +1,7 @@
 ---
 title: Boostcamp 1days
 date: 2022-09-19 10:00:00 +0900
+comment: true
 categories: [Boostcamp AI Tech 4기]
 tags: [1weeks, 1day]
 ---
