@@ -48,7 +48,7 @@ social:
   email: jjy5136@naver.com             # change to your email address
   links:
     # The first element serves as the copyright owner's link
-    #- https://twitter.com/username      # change to your twitter homepage
+    # - https://twitter.com/username      # change to your twitter homepage
     - https://github.com/username       # change to your github homepage
     # Uncomment below to add more social links
     # - https://www.facebook.com/username
@@ -89,7 +89,7 @@ img_cdn: ''
 
 # the avatar on sidebar, support local or CORS resources
 # 대표 이미지
-avatar: ''
+avatar: '/img/title/title.jpg'
 
 # boolean type, the global switch for ToC in posts.
 # TOC = table of contents , 옆에 따라다니는거
