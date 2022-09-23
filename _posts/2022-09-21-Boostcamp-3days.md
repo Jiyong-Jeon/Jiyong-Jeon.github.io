@@ -5,6 +5,7 @@ comment: true
 categories: [Boostcamp AI Tech 4기]
 tags: [1weeks, 3day]
 ---
+
 # 3일차 학습 정리
 ---
 #### 베이즈 통계학
@@ -53,7 +54,7 @@ $$ P(A\cap B) = P(B)P(A|B)$$
 - 피어세션 진행 주제 선정 회의 (논문리뷰, 대회참가 등등)
 - 일반 과제 코드 리뷰
   - 각자 해결 방법을 설명 하고 코맨트를 주고 받음
-- [회의록]
+- [회의록](https://night-eustoma-5f3.notion.site/9-21-fe7f8c74f631409cb20d1910e8da963a)
   
 ---
 ### 참고자료

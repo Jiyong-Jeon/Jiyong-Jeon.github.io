@@ -1,11 +1,12 @@
 ---
 title: Boostcamp 1weeks
-date: 2022-09-23 19:00:00 +0900
+date: 2022-09-23 18:00:00 +0900
 comment: true
 categories: [Boostcamp AI Tech 4기]
 tags: [1weeks]
 pin: true
 ---
+
 # 주간 학습 정리
 - **[1일차](https://jiyong-jeon.github.io/posts/Boostcamp-1days/)**
 - **[2일차](https://jiyong-jeon.github.io/posts/Boostcamp-2days/)**
@@ -14,7 +15,6 @@ pin: true
 - **[5일차](https://jiyong-jeon.github.io/posts/Boostcamp-5days/)**
 
 ---
-
 
 # 피어세션
 - [주간 팀 회고](https://night-eustoma-5f3.notion.site/1-57eb2091284345ea97333ef56061d923)

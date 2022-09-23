@@ -1,10 +1,11 @@
 ---
 title: Boostcamp 5days
-date: 2022-09-23 19:00:00 +0900
+date: 2022-09-23 18:00:00 +0900
 comment: true
 categories: [Boostcamp AI Tech 4기]
 tags: [1weeks, 5day]
 ---
+
 # 5일차 학습 정리
 #### 주간 학습 내용 복습
 - 어려웠던 부분 다시보기

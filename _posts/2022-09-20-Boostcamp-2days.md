@@ -5,6 +5,7 @@ comment: true
 categories: [Boostcamp AI Tech 4기]
 tags: [1weeks, 2day]
 ---
+
 # 2일차 학습 정리
 ---
 #### AI Math
@@ -136,7 +137,7 @@ tags: [1weeks, 2day]
 - '피어세션이 피어(peer)씁니다' 활동 PPT 제작
 - TMI시간을 가지며 어색한 분위기를 해소
 - 멘토링 준비
-- [회의록]
+- [회의록](https://night-eustoma-5f3.notion.site/9-20-8b2f34938232405ca3c41ca14bb71bc3)
   
 ---
 ### 참고자료
