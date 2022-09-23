@@ -1,6 +1,6 @@
 ---
 title: Boostcamp 4days
-date: 2022-09-22 10:00:00 +0900
+date: 2022-09-22 19:00:00 +0900
 comment: true
 categories: [Boostcamp AI Tech 4기]
 tags: [1weeks, 4day]
@@ -11,6 +11,7 @@ tags: [1weeks, 4day]
 - gitblog 설정중... 
 - 학습 정리 기록 및 주간 회고 용도로 사용
 - **목표 : 꾸준히 게시하기!**
+- 마크다운 언어 익숙해지기
 
 ---
 # 마스터 클래스 (임성빈 마스터님)
@@ -44,7 +45,7 @@ tags: [1weeks, 4day]
   - [dacon 대회](https://dacon.io/competitions/official/235978/overview/description)
 - 아직은 어색한 분위기가 있음 (친해지려 노력하기!)
 - 심화과제에서 어려웠던 부분을 공유하여 해소
-- [회의록]
+- [회의록](https://night-eustoma-5f3.notion.site/9-22-31aa8363383f469aaa533dde3c98f879)
   
 ---
 ### 참고자료

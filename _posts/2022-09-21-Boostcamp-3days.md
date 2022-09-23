@@ -1,6 +1,6 @@
 ---
 title: Boostcamp 3days
-date: 2022-09-21 10:00:00 +0900
+date: 2022-09-21 19:00:00 +0900
 comment: true
 categories: [Boostcamp AI Tech 4기]
 tags: [1weeks, 3day]
