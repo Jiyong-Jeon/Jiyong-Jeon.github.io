@@ -5,6 +5,8 @@ comment: true
 categories: [Boostcamp AI Tech 4기]
 tags: [1weeks, 1day]
 ---
+<h1 data-toc-skip> Boostcamp AI Tech 4기 시작 </h1>
+
 # 1일차 학습 정리
 ---
 #### python 기본
@@ -83,5 +85,8 @@ tags: [1weeks, 1day]
 
 
 ---
-     
-# Boostcamp AI Tech 4기 시작
+# 피어세션
+- 팀원들을 처음 만나 어색
+- 자기소개를 하고 형동생 하며 말을 편하게 하기로 함
+- 그라운드 룰 설정
+- [회의록]
