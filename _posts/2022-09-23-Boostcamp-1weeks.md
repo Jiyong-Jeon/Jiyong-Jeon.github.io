@@ -5,6 +5,7 @@ comment: true
 categories: [Boostcamp AI Tech 4기]
 tags: [1weeks]
 pin: true
+math: true
 ---
 
 # 주간 학습 정리

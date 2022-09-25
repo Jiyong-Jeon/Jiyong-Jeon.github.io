@@ -4,6 +4,7 @@ date: 2022-09-19 19:00:00 +0900
 comment: true
 categories: [Boostcamp AI Tech 4기]
 tags: [1weeks, 1day]
+math: true
 ---
 <h1 data-toc-skip> Boostcamp AI Tech 4기 시작 </h1>
 

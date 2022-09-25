@@ -4,6 +4,7 @@ date: 2022-09-22 19:00:00 +0900
 comment: true
 categories: [Boostcamp AI Tech 4기]
 tags: [1weeks, 4day]
+math: true
 ---
 # 4일차 학습 정리
 ---
