@@ -9,7 +9,8 @@ math: true
 
 # 2일차 학습 정리
 ---
-#### AI Math
+<h3 data-toc-skip> AI Math </h3>
+
 - **벡터**
   - 공간에서 한 점
   - L1노름, L2노름 --> 차이점 : 기하학적 성질이 다름
@@ -63,7 +64,8 @@ math: true
     - 학습에 필요한 각 층 파라미터의 그레디언트 벡터는 윗층 부터 역순으로 계산
     - 합성함수 미분법인 연쇄법칙(chain-rule) 기반 자동미분(auto-differentiaion)을 사용
 
-#### 확률론
+<h3 data-toc-skip> 확률론 </h3>
+
 - 딥러닝은 확률론 기반의 기계학습 이론을 바탕
   - 회귀분석 손실함수 -> L2-노름 : 예측오차의 분산을 가장 최소화 하는 방향으로 학습
   - 불류문제 손실함수 -> 교차엔트로피(cross-entropy) : 모델 예측의 불확실성을 최소화하는 방향으로 학습
@@ -71,10 +73,10 @@ math: true
   - 확률 분포에 따라 확률변수가 다르게 모델링
   - 이산확률변수(이산형(discrete))
     - 확률변수가 가질수 있는 경우의 수를 모두 고려하여 확률을 더해서 모델링
-      - $$ \Rho(X\in A)= \sum_{x\in A} P(X=x) $$
+      - $$ \mathbb{P} (X\in A)= \sum_{x\in A} P(X=x) $$
   - 연속확률변수(연속형(continuous))
     - 데이터 공간에 정의된 확률변수의 밀도(density)위에서의 적분을 통해 모델링
-      - $$ \Rho(X\in A)= \int_{A} P(x)dx $$
+      - $$ \mathbb{P} (X\in A)= \int_{A} P(x)dx $$
 - **확률분포**
   - 데이터의 초상화
   - 결합 분포 P(x, y) : 전체 데이터(x, y) 확률 분포를 모델링
@@ -129,7 +131,7 @@ math: true
   - 총변동거리, 바슈타인거리
   - 쿨백-라이블러 발산 (Kullback-Leibler Divergence, KL)
     - 이산확률변수
-      - $$ KL(P||Q) = -\Epsilon_{x \sim P(x)}[logQ(x)] + \Epsilon_{x \sim P(x)}[logP(x)]$$
+      - $$ \mathbb{KL} (P||Q) = -\mathbb{E}_{x \sim P(x)}[logQ(x)] + \mathbb{E}_{x \sim P(x)}[logP(x)]$$
     - 최대가능도 추정법은 쿨백-라이블러 발산을 최소화하는 것과 동일
 
 

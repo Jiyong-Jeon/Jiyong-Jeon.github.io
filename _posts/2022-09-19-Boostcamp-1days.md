@@ -10,7 +10,7 @@ math: true
 
 # 1일차 학습 정리
 ---
-#### python 기본
+<h3 data-toc-skip> python 기본 </h3>
 - **인터프리터와 코드 편집기**
   - 인터프리터 -> python, Anaconda(Miniconda)
 - **python 기초**
@@ -23,7 +23,7 @@ math: true
   - split & join, list comprehension, enumerate & zip, lambda & map & reduce, iterable object, generater, passing arguments, asterisk, variable-length(가변인자)
 
 
-#### OOP
+<h3 data-toc-skip> OOP </h3>
 - class와 instance
 - attribute와 method
 - **객체지향언어의 특징**
@@ -40,22 +40,22 @@ math: true
     - inner function을 return값으로 반환
     - 복잡한 클로져 함수를 데코레이터로 간단하게 할 수 있음
 
-#### Module & Project
+<h3 data-toc-skip> Module & Project </h3>
 - import, package
 - 환경 설정
 
-#### Exception handling
+<h3 data-toc-skip> Exception handling </h3>
 - try ~ except (Exception Type) ~ else , finally
 - 다양한 exception 종류
 - raise (Exception Type) , assert
 
-#### File handling
+<h3 data-toc-skip> File handling </h3>
 - text파일과 binary파일 두 종류
 - python file I/O
 - os, shutil, pathlib modules
 - pickle
 
-#### Logging handling
+<h3 data-toc-skip> Logging handling </h3>
 - logging module
   - 모듈 설정
     - configparser file, argparser
@@ -79,7 +79,7 @@ math: true
   - 데이터 용량이 적고, Code로 전환이 쉬움, 간결성 (XML의 대체제로 활용)
   - json module
 
-#### Numpy
+<h3 data-toc-skip> Numpy </h3>
 - **numpy (NUMerical PYthon)**
   - 파이썬의 고성능 과학 계산용 패키지
   - Matrix와 Vector와 같은 Array 연산의 표준
