@@ -13,7 +13,7 @@ math: true
 - **딥러닝 프레임워크**
   - **Tensorflow**, **PyTorch**, CNTK, mxnet, Caffe 등등
   - keras / TensorFlow / PyTorch
-    - ![프레임워크 비교](../img/post/boostcamp_6days_img_1.png)
+    - ![프레임워크 비교](/img/post/boostcamp_6days_img_1.png)
 - **Computational Graph**
   - 연산의 과정을 그래프로 표현
   - Tensorflow
