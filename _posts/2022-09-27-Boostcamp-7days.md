@@ -7,7 +7,7 @@ tags: [2weeks, 7day]
 math: true
 ---
 
-# 6일차 학습 정리
+# 7일차 학습 정리
 <h3 data-toc-skip> PyTorch 모델 불러오기 </h3>
 
 - model.save
