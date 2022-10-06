@@ -82,11 +82,11 @@ math: true
     - 즉, 유의미한 분포를 얻어내기 쉽지 않다
 - **Conditional Independence**
   - Chain rule
-    - $ p(x_1, ...,x_n) = p(x_1)p(x_2|x_1)p(x_3|x_1x_2) ··· p(x_n|x_1, ... , x_{n-1}) $
+    - $ p(x_1, ...,x_n) = p(x_1)p(x_2 \mid x_1)p(x_3 \mid x_1x_2) ··· p(x_n \mid x_1, ... , x_{n-1}) $
   - Bayes' rule
-    - $ p(x|y) = \frac {p(x,y)}{p(y)} = \frac {p(y|x)p(x)}{p(y)}  $
+    - $ p(x \mid y) = \frac {p(x,y)}{p(y)} = \frac {p(y \mid x)p(x)}{p(y)}  $
   - Conditional independence
-    - if, $ x ⊥ y|z $, then $ p(x|y,z) = p(x|z)$
+    - if, $ x \perp y \mid z $, then $ p(x \mid y,z) = p(x \mid z)$
     - Chain rule 에 접목 가능
       - 이때 필요한 파라미터는 $2n -1$
 - **Autoregressive Model**
@@ -102,7 +102,7 @@ math: true
     - 학습하는 density와 가장 근사를 잘하는 density의 거리를 줄이는 방향
     - 확률 사이의 분포 근사 거리를 줄이는 방법
       - KL-diviergence
-        - $ \mathbb{D} (P_{data}||P_{\theta}) = \mathbb{E}_{x \sim P_{data}}[log{P_{data}(x)}] - \mathbb{E}_{x \sim P_{data}}[log{P_{\theta}(x)}]$
+        - $ \mathbb{D} (P_{data} \mid \mid  P_{\theta}) = \mathbb{E}_{x \sim P_{data}}[log{P_{data}(x)}] - \mathbb{E}_{x \sim P_{data}}[log{P_{\theta}(x)}]$
         - KL-diviergence를 최소화한다는 것 == log-likelihood가 최대가 되는 것
         - $p_{data}$에 접근이 불가능 하여 Emprical log-likelihood로 근사
   - ERM(Emprical Risk Minimization)
