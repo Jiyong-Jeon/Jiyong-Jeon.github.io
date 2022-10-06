@@ -106,7 +106,7 @@ math: true
         - KL-diviergence를 최소화한다는 것 == log-likelihood가 최대가 되는 것
         - $p_{data}$에 접근이 불가능 하여 Emprical log-likelihood로 근사
   - ERM(Emprical Risk Minimization)
-    - 오버피팅이 흔하게 자주 일어난다
+    - 오버피팅이 흔하게 자주 일어난다 (학습 데이터를 다 외워버림)
     - hypothesis space를 줄인다
   - Under-fittng이 심함
     - 모든 공간의 분포를 사용하지 못함
@@ -116,6 +116,35 @@ math: true
     - Variational inference
       - 찾고자하는 분포(Posterior distribution)가 너무 어려워 비슷한 분포(Variational distribution)로 근사하는 방법
       - Encoder => Variational distribution을 학습하는 것 => 즉, 목표
+    - Maximum Likelihood Learning(↑) = ELBO(↑) + Variational Gap (↓)
+      - $ \log p_{\theta}(x) = \mathbb{E}_{z \sim q_{\phi}}[\log \frac {p_{\theta}(x, z)}{q_\phi (z \mid x)}] + D_{KL}(q_\phi (z \mid x) \mid \mid p_\theta (z \mid x)) $
+      - ELBO는 계산 할 수 있고, Variational Gap은 계산 불가
+      - 즉, 상대적으로 계산할 수 있는 ELBO를 키워서 Variational Gap을 줄인다.
+    - ELBO (Evidence Lower Bound)
+      - ELBO = Reconstruction Term - Prior Fitting Term
+      - $ \mathbb{E}_{z \sim q_{\phi}}[\log \frac {p_{\theta}(x, z)}{q_\phi (z \mid x)}] = \mathbb{E}_{q_{\phi}(z \mid x)}[p_\theta (x \mid z)] - D_{KL}(q_\phi (z\mid x)\mid \mid p(z)) $
+      - Reconstruction Term = autoencoder의 reconstruction loss를 최소화
+      - Prior Fitting Term = prior distribution과 나의 인코더에서 나온 distribution을 비슷하게 해줌
+    - 한계
+      - intractable model
+      - prior fitting term이 미분 가능해야 하기 때문에 대부분 가우시안 분포만을 사용
+        - 가우시안을 사용하지 않기위한 논문들은 존재
+- **GAN(Generative Adversarial Networks)**
+  - Generator와 Discriminator 의 minmax game
+    - $ \min _G \max _D V(D, G) = \mathbb{E}_{x \sim p_{data(x)}}[log D(x)] + \mathbb{E}_{z \sim p_{z(z)}}[log(1-D(G(z)))]$
+  - Discriminator objective
+    - $ \max _D V(D, G) = \mathbb{E}_{x \sim p_{data(x)}}[log D(x)] + \mathbb{E}_{z \sim p_{G}}[log(1-D(x))] $
+  - Generator objective
+    - $ \min _G V(D, G) = \mathbb{E}_{x \sim p_{data(x)}}[log D(x)] + \mathbb{E}_{z \sim p_{G}}[log(1-D(x))] $
+- **Diffusion Models**
+  - 수식이 엄청 많은 논문
+  - 노이즈에서 조금씩 변경해가면서 이미지를 생성 (하지만 성능이 좋음)
+  - Forward(Diffusion) process
+    - 이미지에 노이즈를 넣어 이미지를 노이즈화 시킴
+  - Reverse process
+    - 실제로 학습하는 과정
+    - 노이즈화 된 이미지의 노이즈를 없애는 것을 학습
+    - 굉장히 오랜 step을 거쳐서 학습
 
 ---
 
