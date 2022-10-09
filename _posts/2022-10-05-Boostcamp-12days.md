@@ -24,7 +24,7 @@ math: true
   - 시간이 지날수록 과거의 정보가 소실된다
     - vanishing/exploding gradient
 - **LSTM (Long Short Term Memory)**
-  - ![LSTM 구조](../img/post/boostcamp_12days_img_1.png)
+  - ![LSTM 구조](/img/post/boostcamp_12days_img_1.png)
   - cell state
     - 컨베이너 벨트 처럼 과거 정보를 통과시킨다
   - Forget gate

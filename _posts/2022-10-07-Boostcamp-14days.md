@@ -14,7 +14,7 @@ math: true
 - **차트의 요소**
   - Text
     - Title, Label, Tick Label, Legend, Annotation
-    - ![Text example](../img/post/boostcamp_14days_img_1.png)
+    - ![Text example](/img/post/boostcamp_14days_img_1.png)
   - Color
     - Palette의 종류
       - 범주형(Categorical), 연속형(Sequential), 발산형(Diverge)
