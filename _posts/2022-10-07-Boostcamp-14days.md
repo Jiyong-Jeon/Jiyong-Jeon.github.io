@@ -7,12 +7,28 @@ tags: [3weeks, 14day]
 math: true
 
 ---
-# 13일차 학습 정리
+# 14일차 학습 정리
 
 <h3 data-toc-skip> 시각화, 기본적인 차트 </h3>
 
-- Matplotlib을 통해 간단한 시각화 실습 (1-3)
-- **Bar Plot 사용하기**
+- **차트의 요소**
+  - Text
+    - Title, Label, Tick Label, Legend, Annotation
+    - ![Text example](../img/post/boostcamp_14days_img_1.png)
+  - Color
+    - Palette의 종류
+      - 범주형(Categorical), 연속형(Sequential), 발산형(Diverge)
+    - 강조, 색상 대비
+    - 색각 이상 주의
+  - Facet
+    - Multiple View (분할)
+      - 같은 데이터셋에서 서로 다른 인코딩
+      - 같은 방법을 동시에 여러 feature롤 볼 때
+      - 부분 집합을 세세하게 보여줄 때
+    - Grid Spec
+  - More tips
+    - Grid, 심플한 처리(선 추가, 면 추가), Theme
+  - 각 요소 실습
 
 ---
 
@@ -34,25 +50,21 @@ math: true
 
 # 피어세션
 - 회고록 작성
-  - 
 - 수업 관련
   - 심화 과제에 대한 궁금증 공유
-  - 팀원 토의 중 해결 되지 않는 문제들은 오피스아워 시간에 질문 예정
-- 팀 대회
-  - 구글 드라이브 속도 문제
-- [회의록](https://night-eustoma-5f3.notion.site/10-06-7432cbe517bf40f88095ad9702041caf)
+- 피어세션 내용 공유
+- [회의록](https://night-eustoma-5f3.notion.site/10-07-46d57cf2220246e8b6764ac881109bab)
 
 ---
 
 # 오피스아워
-- 심화과제 1, 2 리뷰
+- 정태문 조교님
 - 심화과제 1
   - transformer 복습
-  - VIT 논문 리뷰
-  - VIT 코드 리뷰
+  - VIT 논문 및 코드 리뷰
 - 심화과제 2
-  - VAE, GAN 리뷰
-  - AAE 논문 리뷰
+  - VAE, GAN 복습
+  - AAE 논문 및 코드 리뷰
 
 ---
 
