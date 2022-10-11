@@ -73,13 +73,6 @@ math: true
 
 ---
 
-# 일반 과제
-- AAE (Adversarial Autoencoder)
-  - AAE 논문의 설명에 맞게 모델 구축 실습
-  - 완벽히 이해하지 못해 AAE논문과 그에 관련된 논문을 읽어봐야할 듯
-
----
-
 # 피어세션
 - 공휴일
 
