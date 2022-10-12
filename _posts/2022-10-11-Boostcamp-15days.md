@@ -3,7 +3,7 @@ title: Boostcamp 15days
 date: 2022-10-11 18:00:00 +0900
 comment: true
 categories: [Boostcamp AI Tech 4기]
-tags: [3weeks, 15day]
+tags: [4weeks, 15day]
 math: true
 
 ---
