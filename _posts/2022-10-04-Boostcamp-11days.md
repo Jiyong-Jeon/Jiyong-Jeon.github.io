@@ -130,7 +130,7 @@ math: true
   - 전주의적 속성(Pre-attentive Attribute)
     - 주의를 주지않아도 인지하게 되는 요소
     - 적절하게 사용할 때, 시각적 분리(visual pop-out)
-    - ![visual pop-out](../img/post/boostcamp_11days_img_2.png)
+    - ![visual pop-out](/img/post/boostcamp_11days_img_2.png)
 
 ---
 

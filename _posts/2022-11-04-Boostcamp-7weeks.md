@@ -4,8 +4,8 @@ date: 2022-11-04 18:00:00 +0900
 comment: true
 categories: [Boostcamp AI Tech 4기]
 tags: [7weeks]
+pin: true
 math: true
-
 ---
 
 # 주간 학습 정리
