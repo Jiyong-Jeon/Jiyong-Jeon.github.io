@@ -1,9 +1,9 @@
 ---
-title: Boostcamp 33days
+title: Boostcamp 34days
 date: 2022-11-07 18:00:00 +0900
 comment: true
 categories: [Boostcamp AI Tech 4기]
-tags: [8weeks, 33day]
+tags: [8weeks, 34day]
 math: true
 
 ---
@@ -165,7 +165,6 @@ math: true
 ---
 
 # 주말 간 특별한일
-
 - 2022 Animal Datathon 대회 본선
   - 과제1 : 축사 내 돼지의 자세분류
     - 레이블이 주어지지 않은 돼지 이미지의 자세 분류

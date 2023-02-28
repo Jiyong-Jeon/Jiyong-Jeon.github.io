@@ -118,8 +118,6 @@ math: true
         - Cutmix
         - Model Debugging
         - OOF (hard voting)
-
-
 - 방향을 도식화하고 결과를 정리해보는 것이 중요함
 - 결과가 중요한 것이 아니라 과정이 중요
   - 회고를 통해 앞으로 해야할 떄의 중요한 부분을 정확히 파악하는 것

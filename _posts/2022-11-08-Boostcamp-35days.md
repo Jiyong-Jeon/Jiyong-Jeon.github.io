@@ -1,9 +1,9 @@
 ---
-title: Boostcamp 34days
+title: Boostcamp 35days
 date: 2022-11-08 18:00:00 +0900
 comment: true
 categories: [Boostcamp AI Tech 4기]
-tags: [8weeks, 34day]
+tags: [8weeks, 35day]
 math: true
 
 ---

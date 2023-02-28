@@ -26,7 +26,7 @@ timezone: Asia/Seoul
 title: Jiyong-Jeon                          # the main title
 
 # subtitle 설정
-tagline: gitblog 도전중   # it will display as the sub-title
+tagline: Try not to become a man of success but rather try to become a man of value. -Albert Einstein   # it will display as the sub-title
 
 # ??
 description: >-                        # used by seo meta and the atom feed

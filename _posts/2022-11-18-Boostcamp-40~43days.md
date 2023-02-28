@@ -1,0 +1,493 @@
+---
+title: Boostcamp 40~43days
+date: 2022-11-18 18:00:00 +0900
+comment: true
+categories: [Boostcamp AI Tech 4기]
+tags: [9weeks, 40day, 41day, 42day, 43day]
+math: true
+
+---
+
+# 40~43일차 학습 정리
+
+<h3 data-toc-skip> 2Stage Detectors </h3>
+
+- 접근 전략
+  - 입력이미지 -> 특징 계산 -> Localization -> Classification
+- R-CNN
+  - Pipeline
+    - input -> Extract Region proposals -> Compute CNN features -> Classify Regions
+      - 총 2천개의 Region 추측
+      - RoI(Region of Interest) 크기를 조절해 모두 동일한 사이즈로 변형
+      - RoI을 CNN에 넣어 feature 추출
+      - Feature를 SVM에 넣어 분류 진행
+      - feature를 regression을 통해 Bounding box를 예측
+  - Extract Region proposals
+    - Sliding Window
+      - 잘 쓰이지 않음
+    - Selective Search
+      - 무수히 많은 후보영역을 나누고 점점 합쳐가면서 영역을 나눔
+      - 그리드 알고리즘
+  - Traning
+    - AlexNet
+    - Linear SVM
+      - Hard negative mining
+        - 배경이 식별하기 어려운 샘플들을 강제로 다음 배치의 negative sample로 mining하는 방법
+    - Bbox regressor
+  - Shortcomings
+    - 2000개의 Region을 각각 CNN통과
+    - 강제 Warping, 성능하락 가능성
+    - CNN, SVM classifier, bounding box regressor, 따로 학습
+    - End to End X
+- SPPNet
+  - pipeline
+    - image->conv layers->spitail pyramid pooling -> fc layer -> output
+  - Spatial Pyramid Pooling Layer
+    - ROI에 대해 각각 1x1, 2x2, 4x4, 16x16 등등 pooling 진행
+    - polling의 결과를 이어붙여 고정된 feature를 만들어냄
+  - Shortcomings
+    - CNN, SVM classifier, bounding box regressor, 따로 학습
+    - End to End X
+- Fast R-CNN
+  - pipeline
+    - input -> CNN -> RoI Projection -> RoI Pooling -> fc layer -> Classify Regions
+  - RoI projection
+    - 원본이미지에 Selective Search 후 Region 추출
+    - 추출된 Region을 feature map에 Projection
+  - multi task loss 사용
+    - clasification loss (CE) + bounding box regression (SmoothL1)
+  - Hierarchical sampling
+    - 한 배치안에서 한 이미지의 RoI
+  - Shortcomings
+    - End to End X
+- Faster R-CNN
+  - pipeline
+    - Faster R-CNN + RPN
+  - RPN (Region Proposal Network)
+    - Anchor box
+      - 각 셀마다 비율, 크기를 다르게 둔 box를 미리 정의
+    - k 개의 Anchor box가 객체를 포함하는지 판단(Cls layer), box의 위치와 크기를 조정(reg layer)하는 역할
+    - feature map에 1x1 conv를 수행하여 Cls head, 와 Box head를 통과하여 9개의 박스가 객체를 포함하는지, 위치와 크기가 어떤지 결정
+  - NMS
+    - 유사한 RPN Proposals를 제거하기 위해 사용
+    - Box에 대한 스코어를 측정
+    - 이후 박스들간에 스코어가 높은 순 부터 IoU가 0.7 이상 이면 제거
+  - 학습
+    - RPN 과 Fast RCNN 학습을 위해 4steps alternative training 활용
+    - Step 1) Imagenet pretrained backbone load + RPN 학습
+    - Step 2) Imagenet pretrained backbone load + RPN from step 1 + Fast RCNN 학습
+    - Step 3) Step 2 finetuned backbone load & freeze + RPN 학습
+    - Step 4) Step 2 finetuned backbone load & freeze + RPN form step3 + Fast RCNN 학습
+    - 과정이 너무 복잡하여 최근에는 Approxmate Joint Training 활용
+  - RCNN의 단점은 모두 해결하였으나 2 stage구조로 실시간에 활용하기는 어렵다
+- Faster RCNN 실습
+
+<h3 data-toc-skip> Object Detection Library </h3>
+
+- 통합된 라이브러리 부재
+- MMDetection
+  - 전체 프레임워크를 모듈 단위로 분리해 관리 할 수 있음
+  - 많은 프레임워크를 지원함
+  - 다른 라이브러리에 비해 빠름
+  - 단점
+    - Custom을 하려면 라이브러리에 대한 완벽한 이해가 필요
+  - pipeline
+    - input -> backbone -> neck -> dense prediction -> prediction
+    - 2 stage
+      - backbone, neck, densehead, RoIhead 모듈로 나눌 수 있음
+    - config파일을 이용해 통제됨
+  - 사용 예시
+  - Config File
+    - 데이터셋부터, 모델, Scheduler, optimizer 정의 가능
+    - 안에 다양한 모델 등이 정의 되어있음
+    - configs/base 폴더에 가장 기본이 되는 config파일이 존재
+  - Dataset
+    - Data pipeline
+      - LoadImageFromFile -> LoadAnnotations -> Resize -> RandomFilp -> Normalize -> Pad -> DefaultFormatBundle -> Collect
+  - 2stage Model
+    - Type
+      - 모델 유형
+    - Backbone
+    - Neck
+    - RPN_head
+    - RoI head
+    - \_\_init\_\_.py 아래에 사용가능한 backbone목록이 있음
+    - 새로운 custom backbone 등록도 가능
+  - Runtime setting
+    - 학습정인 부분들 (Optimizer, scheduler)
+- Detectron2
+  - 전체 프레임워크를 모듈 단위로 분리해 관리 할 수 있음
+  - OD이외에도 Segmentation, Pose prediction 등의 알고리즘을 지원
+  - pipeline
+    - Setup config -> setup Trainer -> start training
+      - config파일 수정
+      - Augmentation mapper 정의
+      - Trainer 정의
+      - 학습
+    - 디폴트 컨피그를 불러온 뒤 수정하여 사용
+  - model config
+    - backbone
+    - FPN
+    - Anchor Generator
+    - RPN
+    - ROI_-_HEADS
+    - ROI_BOX_HEADS
+    - 커스텀 Backbone 등록 가능
+  - Solver config
+
+<h3 data-toc-skip> Neck </h3>
+
+- neck이란?
+  - 기존의 모델은 backbone의 마지막 피처맵만 이용함
+  - backbone의 중간중간 피처맵도 이용하자
+  - 다양한 크기의 객체를 더 잘 탐지 할 수 있다.
+  - 다양한 level의 피처맵에서 나온 특징을 섞어서 Region을 뽑아냄
+- FPN (Feature Pyramid Network)
+  - top-down path way 추가
+    - high level에서 low level로 semantic 정보 전달
+  - Bottom-up
+    - backbone 통과
+  - Top-down
+    - Low level로 정보 전달
+  - Lateral connections
+    - 피처맵에서 나온 피처는 1x1 conv로 채널을 늘리고 high-level에서 나온 피처는 upsampling을 진행하여 두 피처의 크기를 맞춤
+    - Nearest Neighbor Upsampling 사용
+  - 여러 scale의 물체를 탐지하기 위해 설계
+  - 여러크기의 feature를 사용
+  - 단점
+    - 실제는 네트워크가 엄청 길어서 low level의 피처가 high level에 제대로 전달할 수 었다.
+- PANet (Path Aggregation Network)
+  - FPN의 단점을 보완
+  - Bottom-up Path Augmentation 추가
+  - Adaptive Feature Pooling
+- DetectoRS
+  - Looking and thinking twice
+  - Recusive Feature Pyramid (RFP)
+    - FPN의 과정 이후 결과를 한번더 Backbone에 전달하여 다시 FPN 과정
+    - ASPP 과정을 통해 backbone에 전달
+      - Atrous convolution 을 여러 단계를 적용하여 Pooling
+- BIFPN (Bi-directional Feature Pyramid)
+  - EfficientDet에서 제안
+  - 효율성을 위해 한곳에서 오는 피처는 제거
+  - Weighted Feature Fusion
+    - feature별 가중치를 사용하여 중요한 feature를 강조하여 성능 향상
+- NasFPN
+  - 다양한 FNP 구조를 Nas(Neural architecture search)를 활용하여 찾자
+  - 단점
+    - High search cost
+- AugFPN
+  - Highest feature map은 정보의 손실이 있다 (더 위가 없기 때문에)
+  - Residual Feature Augmentation
+    - Ratio-invariant Adaptive Pooling
+      - upsampling을 통해 크기를 맞춤
+    - Adaptive Satial Fusion
+      - n개의 feature에 대해 가중치를 두고 합침
+  - Soft RoI Selection
+    - 모든 Feature map에서 RoI를 가져옴
+    - Channel-wise 가충치 계산 후 가중합 이용
+
+<h3 data-toc-skip> 1Stage Detectors </h3>
+
+- 2stage Detector
+  - 1) 후보영역 찾기
+  - 2) 후보영역에 대한 분류
+  - 추론이 느림
+- 1stage Detector
+  - Localization, Classification이 동시에 진행
+  - 전체 이미지에 대해 특징 추추르 객체 검출이 이루어짐 -> 간단한 디자인
+  - 속도가 빠르다
+  - 영역을 추출하지 않고 전체이미지를 보기 때문에 객체의 맥락을 이해
+- YOLO Family (You Only Look Once)
+  - YOLOv1 : 1stage detector 등장
+    - GoogLeNet 변형
+    - pipeline
+      - SxS 그리드 영역으로 나누기 (S = 7)
+      - 각 그리드마다 B개의 Bounding box와 Confidence score 계산 (B = 2)
+        - Confidence = Pr * IOU
+      - 그리드 영역마다 C개의 class에 대한 해당 클래스일 확률 계산 (C=20)
+      - output
+        - 7x7x30
+        - 그리드 cell마다 box pred 계산, NMS까지 (복잡.. 복습하며 이해하기)
+      - Loss
+        - Localization Loss + Confidence Loss + Classification Loss
+      - 장점
+        - 빠른 속도, 일반화된 표현을 학습, real-time detector중 높은 정확도
+      - 단점
+        - 그리드보다 작은 크기의 물체 검출 불가능
+        - 신경망을 통과하여 마지막 Feature만 사용(정확도 하락)
+  - YOLOv2 : 더 빠르고 강력하게 (3가지 측면에서 model 향상)
+    - Better : 정확도 향상
+      - Batch normalization
+      - High resolution classifier (224,224) -> (448, 448)
+      - Convolution with anchor boxes
+        - Fc layer 제거
+        - anchor box 도입
+          - 5개의 an
+        - 좌표 대신 offset 예측
+      - Fine-grained features
+      - Multi-scale training
+        - 다양한 입력 이미지 사용
+    - Faster : 속도 향상
+      - GoogleNet -> Darknet-19
+    - Stronger : 더많은 클래스 (80 -> 9000)
+      - ImageNet + COCO
+      - WordTree 구성
+  - YOLOv3 : Multi-scale feature maps 사용
+    - Darknet-53 사용
+      - 백본 개선
+    - Multi-scale Feature maps
+      - 서로다른 3개의 scale 사용
+      - Feature pyramid network 사용
+  - YOLOv4 : 최신 딥러닝 기술 사용 (BOF, BOS)
+  - YOLOv5 : 크기별로 모델 구성 (S, M, L, XL)
+- SSD
+  - 특징
+    - Extra convolution layers 에서 나온 Feature map들 모두 detection 수행
+    - Fc layer 대신 Conv layer를 사용하여 속도 향상
+    - Default box(anchor box)사용
+  - Network
+    - VGG16(Backbone) + Extra convolution layers
+  - Multi-scale feature maps
+    - $ C = N_{Bbox} * (offsets + N_c) $
+    - output : $ 5 * 5 * (6 * (4 + 21)) $
+  - Training
+    - Hard negative mining
+    - Non maximun suppression
+- RetinaNet
+  - 1stage Detector 문제
+    - Class imbalance
+      - 객체영역 (Positive sample) < 배경 영역 (Negative sample)
+      - Anchor box 대부분 Negative Samples(배경)
+  - Focal Loss
+    - 쉬운 예제에 작은 가중치, 어려운 예제에 큰 가중치
+    - cross entropy loss + scaling factor
+  - Focal loss는 OD이외에도 imbalance 문제의 task에 사용가능
+
+<h3 data-toc-skip> EfficientDet </h3>
+
+- The Importnace of Efficiency in Object Detection
+- Efficient in Object Detection
+  - Model Scaling
+    - 모델을 잘 쌓을 방법은 무엇인가?
+    - width scaling, depth scaling, resolution scaling
+    - 3개를 다 합친게 Compound scaling
+    - 높은 정확도와 효율성을 가지면서 ConvNet 의 크기를 키우는 방법은 없을까?
+    - width, depth, resolution의 적절한 조합
+- EfficientNet
+  - 점점 빠르고 작은 모델에 대한 요구 증가
+  - Scale up
+    - Width Scaling
+    - Depth Scaling
+    - Resolution Scaling
+    - 통합 : Compound Scaling
+  - Accuracy & Efficiency
+    - $ max_{d, w, r} Accuracy(N(d, w, r)) $
+    - 폭 깊이 해상도를 높이면 성능이 향상하지만 더 큰 모델에 대해서는 향상 정도가 감소
+    - 더 나은 정확도와 효율성을 위해 균형을 맞춰서 스케일링
+    - Compound Scaling Method 제안
+  - EfficientNet-B0
+    - Nas를 활용
+    - 알파, 베타, 감마를 찾고 
+    - 파이를 늘려 scale up
+- EfficientDet
+  - Efficient multi-scale feature fusion
+  - model scaling
+    - 모델을 크기를 키우는 방식을 efficientNet과 동일하게 적용
+
+<h3 data-toc-skip> Advanced Object Detecion </h3>
+
+- 더 향상된 모델들을 소개 (자세한 내용은 pdf참고)
+  - 메모하지 않고 강의에 집중
+- Cascade R-CNN
+  - IOU를 순서를 가지고 학습
+  - bbox pooling을 반복 수행할 시 성능 향상되는 것을 증명 (Iterative)
+  - IOU threshold가 다른 Classifier가 반복될 때 성능 향상 증명 (integral)
+  - IOU threshold가 다른 RoI head를 cascade로 쌓을 시 성능 향상 증명 (cascade)
+- DCN (Deformable Convolutional Networks)
+  - CNN은 geometric transform에 한계점을 지님
+  - Deformable convolution
+    - convolution 커널 형식이 정해져있지 않음
+    - offset filed 추가
+  - 주로 OD, segmentation에서 좋은 효과를 보임
+- Transformer
+  - self-attention
+  - VIT (Vision Transformer)
+    - 문제점
+      - 굉장히 많은 양의 Data를 학습해야 성능이 나옴
+      - Transformer 특성상 computational cost가 큼
+      - 일반적인 backbone 사용 불가
+  - DETR (End-to-End Object Detection with Transformers)
+    - Transformer를 처음으로 OD에 적용
+    - NMS 등과 같은 Post process 과정을 Transformer로 없앰
+    - CNN backbone -> Transformer (Encoder-Decoder) -> Prediction Heads
+  - Swin Transformer
+    - CNN과 유사한 구조로 설계
+    - Window라는 개념으로 cost를 줄임
+    - Patch-Partitioning -> Linear Embedding -> Swin Transformer Block(window Multi-Head Attention) -> patch Merging -> swin, merging 반복
+    - Shifted Window Multi-Head Attention
+    - 정리
+      - 적은 데이터에도 학습이 잘 이루어짐
+      - window단위를 사용하여 cost를 줄임
+      - CNN과 비슷한 구조로 backbone으로 general하게 활용
+
+<h3 data-toc-skip> OD in Kaggle (Top solution) </h3>
+
+---
+
+# 피어세션
+- 이번주 계획
+  - 외부대회에 집중
+  - 대신 slack 강의를 듣다가 어려운 것을 올려두기
+  - 이후 다음주에 강의에 대한 리뷰를 마치고 대회에 집중하기
+- level2 팀 외부대회
+  - 대회 서버 구축
+  - 데이터 셋에 대한 EDA 진행 --> 이미지를 볼 수 없어 viu를 통해 하나씩 보며 진행..
+  - 모델 중 가장 좋은 모델 탐색
+    - resnet34를 기준으로 아키텍쳐 선택 (5애폭)
+    - deeplabv3plus, unetplusplus 모델로 선정
+      - encoder와 weight 선정 (efficientnet)
+  - augmentation ensemble 코드 작성
+  - 자동 학습 Queue (일명 노예) 코드 작성
+  - 다양한 실험 진행하기
+- 프로젝트 주제, 팀명 정하기
+  - 좀 더 경제적인 주제로
+- 국방 AI 대회 마무리
+  - 검증 단계 필요
+  - 대회 회고 및 정리하기
+
+---
+
+# 타운홀미팅
+- level2 전체적인 일정
+- level2 p-stage 내용 공개
+
+---
+
+# 마스터클래스
+- 송원호 마스터님
+- 대회 프리뷰
+  - Object detection
+    - 모델 학습에 오래걸림
+    - 데이터 노이즈가 있을 수 있음
+    - 다양한 베이스라인 코드
+      - 모든 라이브러리의 베이스라인 코드를 이해할 필요는 없음!
+    - 이미지는 원본이 아닌 1024x1024
+    - 10개의 클래스
+  - 토론 게시판 적응 활용 권장
+- 캐글 소개 및 캐글 경험
+  - 케글(Kaggle)
+    - 데이터 과학자들의 놀이터 & 커뮤니티
+    - Competiions
+      - 다양한 task
+    - Datasets
+      - Competition Datasets, Custom Datasets
+    - Code
+      - EDA 부터 대회진행 중 유의미한 코드들이 공유
+    - Discussion 
+      - 대회를 진행하며 의견을 나누는 곳
+      - Forums : 일반적인 지식도 공유
+    - Learn
+      - 여러 도메인들을 학습할 수 있는 공간
+  - 캐글 이용하기
+    - 현재 해결하려는 task 와 유사한 캐글 컴피티션 정리
+    - 컴피티션의 많은 정보(Code, Discussions)로 부터 적용할 만한 아이디어 정리
+- 대회 경험
+  - EDA 활용 방법
+  - 다양한 전략 방법
+- 기타 꿀팁
+  - CV Strategy, CV/LB Correlation : 가장 중요
+  - Scheduler
+    - 초기에는 ReduceLR이나 Cycle Scheduler 등
+    - 마지막엔 CosLR 이용하여 사소한 점수까지 쥐어짜기
+  - 협업 방식
+    - 아이디어 위주로 공유
+    - 베이스라인은 각자 구축 -> 극대화 되는 Ensemble 효과
+  - 대회중 점수가 정체될 때
+    - 다시 EDA 하기
+    - OOF 분석 하기
+      - 모델이 잘 예측하지 못하는 인풋만 모아서 공통 특징 파악
+  - 많은 실험이 필수
+    - 작은 모델, 작은 이미지 사이즈부터 실험
+    - 무차별 적인 단순 반복이 아닌 하나의 흐름을 가지고
+
+---
+# 부캠 라디오
+
+---
+# 멘토링 (이호민 멘토님)
+- 현재 우리 조의 상황
+- 멘토님 자기 소개
+  - 생산설비, 공장설비에 딥러닝 도입
+    - 모든 업무를 하심
+  - 현재는 캐나다에 있으심
+- 멘토링 주제 선정
+- 컴패티션 진행 과정
+  - 어떤식으로 할 수 있을까?
+    - 실험을 어떤식으로 해야할지
+    - 항상 왜? 라는 물음
+    - 목적없이 실험 설계 X
+    - 가설을 설정하고 이를 해결해보고 피드백을 받아보자
+  - 진행 사항이 어떤지
+  
+---
+
+# 오피스아워
+- 주세환 조교님
+- 베이스라인 코드 설명
+  - MMDetection 이란
+  - Model config
+    - 어떤 모델을 쓸 것인가
+    - Models
+      - 1stage, 2stage의 차이
+    - 1stage
+      - type
+        - 활용할 디텍더
+        - RetinaNet, YOLOv3 등 Onestage detector..
+      - backbone
+        - 어떤 백본을 쓸건지
+        - ResNet, ResNeXt, DarkNet 등등
+        - 백본별 파라미터 수정 필요
+        - num stage
+      - neck
+        - 넥..? 더 찾아보기
+        - in_channels : 백본의 아웃풋 채널을 넘겨줌
+        - out_channels : 최종 채널을 어떻게 조정할 것인가
+      - bbox_head
+        - type : 디텍터의 해드를 따라가는 경우가 많음
+        - num_classes : 클래스 수에 맞게 (coco == 80, 현재 대회 == 10)
+        - in_channels : neck에서 전달된 채널 수
+        - actor_generator, bbox_coder, loss_lcs, loss_bbox
+      - train_cfg
+        - 학습할 때 필요한 파라미터 (ex. threshold)
+      - test_cfg
+        - inference 할때 필요한 파라미터 (ex. nms => iou_threshold )
+    - 2stage
+      - type, backbone, neck은 동일
+      - rpn_head
+        - Bbox head와 거의 유사
+      - roi_head
+        - prediction이 일어나는 구조
+    - 모델 config에 사용될 모델들이 구현되어 있는 장소 : models 
+      - 폴더에서 타입이나 파라미터 확인 가능
+  - Dataset config
+    - samples_per_gpu : 멀티 GPU를 사용한다면 주의 (gpu하나당 배치)
+    - train, val, test
+      - type : 데이터 셋 타입 (대회에는 코코를 사용)
+      - classes : 사용되는 클래스 명
+      - ann_file : 어노테이션 파일 위치
+      - img_prefix : 데이터 위치!
+    - train_pipeline
+      - augmentation이나 Preprocess 설정
+  - Scueduler config
+    - 스케줄러 설정
+  - Runtime config
+    - 로깅이나 학습 런타임 담당
+    - wandb나 tensorboard 지원해줌
+  - Config 파일 관리는 개인 취향
+- 베이스코드 학습 실습
+- MMdetection docs 잘 읽어보기!
+- MMDetection에 등록되지 않은 모델들도 많은데 이를 활용해보는 것도 도움이 될 듯.
+
+---
+### 참고자료
+- 부스트캠프 AI Tech 교육 자료
