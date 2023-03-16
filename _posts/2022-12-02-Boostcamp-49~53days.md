@@ -21,8 +21,7 @@ math: true
   - 오프라인 대회 출전
     - 최종 5위로 후원기업상 수상
 
-- P-stage
-  - 
+- P-stage 대회 진행
 - 프로젝트 주제, 팀명 정하기
   - 좀 더 경제적인 주제로
 
@@ -66,6 +65,8 @@ math: true
   - datasets을 직접 건드림
     - coco anotator, robo flow
     - 데이터를 만질수록 떨어지는 경향
+
+
 ---
 
 # 마스터 클래스
