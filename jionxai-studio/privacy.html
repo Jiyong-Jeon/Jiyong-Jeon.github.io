@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>개인정보처리방침 · jionxai Studio</title>
+<style>
+  :root { color-scheme: light dark; --fg: #1f2328; --bg: #ffffff; --muted: #57606a; --link: #0969da; }
+  @media (prefers-color-scheme: dark) { :root { --fg: #e6edf3; --bg: #0d1117; --muted: #9da7b3; --link: #4493f8; } }
+  body { margin: 0; background: var(--bg); color: var(--fg); font: 16px/1.7 system-ui, -apple-system, "Segoe UI", "Noto Sans KR", sans-serif; }
+  main { max-width: 720px; margin: 0 auto; padding: 40px 16px 64px; }
+  h1 { font-size: 26px; margin: 0 0 8px; }
+  h2 { font-size: 18px; margin: 28px 0 8px; }
+  .muted { color: var(--muted); font-size: 14px; }
+  a { color: var(--link); }
+  code { font-size: 14px; word-break: break-all; }
+</style>
+</head>
+<body>
+<main>
+  <h1>개인정보처리방침</h1>
+  <p class="muted">jionxai Studio · 시행일 2026-11-25</p>
+
+  <h2>1. 받는 정보</h2>
+  <p>운영자가 구글 허락 화면에서 허락한 유튜브 채널에 대해서만 아래 권한을 받습니다.</p>
+  <ul>
+    <li><code>https://www.googleapis.com/auth/youtube</code>: 영상 올리기, 공개 상태 · 제목 · 설명 · 썸네일 · 재생목록 바꾸기, 채널과 영상 정보 읽기</li>
+    <li><code>https://www.googleapis.com/auth/yt-analytics.readonly</code>: 채널 · 영상 통계 읽기</li>
+  </ul>
+
+  <h2>2. 어디에 두나요</h2>
+  <ul>
+    <li>연결 정보(토큰)는 운영자 PC 안, 운영자 사용자만 읽을 수 있는 폴더에만 둡니다.</li>
+    <li>받은 통계는 운영자 PC 안의 회사 기록에만 둡니다.</li>
+    <li>어떤 외부 서버로도 보내지 않습니다. 구글 API를 부를 때만 구글과 주고받습니다.</li>
+  </ul>
+
+  <h2>3. 누구와 나누나요</h2>
+  <p>누구에게도 팔거나 넘기지 않습니다. 광고에 쓰지 않습니다. jionxai Studio가 구글 API로 받은 정보의 사용과 전달은 <a href="https://developers.google.com/terms/api-services-user-data-policy">Google API Services User Data Policy</a>를 따르며, 제한적 사용(Limited Use) 요건을 지킵니다.</p>
+
+  <h2>4. 유튜브 API 서비스</h2>
+  <p>이 프로그램은 YouTube API Services를 사용합니다. 사용하면 <a href="https://www.youtube.com/t/terms">YouTube 서비스 약관</a>에 동의하는 것이며, 구글의 정보 처리에는 <a href="https://policies.google.com/privacy">Google 개인정보처리방침</a>이 적용됩니다.</p>
+
+  <h2>5. 연결 끊기와 지우기</h2>
+  <ul>
+    <li>언제든 <a href="https://myaccount.google.com/permissions">Google 계정의 서드파티 연결 페이지</a>에서 jionxai Studio 접근을 끊을 수 있습니다. 끊으면 바로 더는 접근하지 않습니다.</li>
+    <li>운영자 PC의 토큰 파일을 지우면 그 연결 정보도 사라집니다. 통계 기록은 운영자가 회사 기록에서 지울 수 있습니다.</li>
+  </ul>
+
+  <h2>6. 연락</h2>
+  <p><a href="https://github.com/Jiyong-Jeon">github.com/Jiyong-Jeon</a></p>
+
+  <hr>
+
+  <h2 lang="en">Privacy Policy (English)</h2>
+  <div lang="en">
+    <p>jionxai Studio is a personal program its operator runs on their own PC. It only accesses the YouTube channels the operator authorizes on Google's consent screen, with these scopes: <code>https://www.googleapis.com/auth/youtube</code> (upload videos; update visibility, title, description, thumbnail and playlists; read channel and video information) and <code>https://www.googleapis.com/auth/yt-analytics.readonly</code> (read channel and video analytics).</p>
+    <p>OAuth tokens are stored only on the operator's PC, in a folder readable only by the operator's user account. Analytics are stored only in the operator's local records. Nothing is sent to any server other than Google's APIs. No data is sold, shared or used for advertising. jionxai Studio's use and transfer of information received from Google APIs adheres to the <a href="https://developers.google.com/terms/api-services-user-data-policy">Google API Services User Data Policy</a>, including the Limited Use requirements.</p>
+    <p>This program uses YouTube API Services. By using it you agree to the <a href="https://www.youtube.com/t/terms">YouTube Terms of Service</a>; Google's handling of data is covered by the <a href="https://policies.google.com/privacy">Google Privacy Policy</a>.</p>
+    <p>Access can be revoked at any time on the <a href="https://myaccount.google.com/permissions">Google Account third-party connections page</a>. Deleting the token file on the operator's PC also removes the stored authorization. Contact: <a href="https://github.com/Jiyong-Jeon">github.com/Jiyong-Jeon</a>. Effective 2026-11-25.</p>
+  </div>
+</main>
+</body>
+</html>
